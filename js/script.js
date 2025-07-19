@@ -912,7 +912,7 @@ function additionalInfoTotaalContributie() {
         const contributieMatch = memberBlock.querySelector('.amount-contributie-totaal')?.textContent.trim().replace(',', '.').match(/€\s*([\d,.]+)/);
         const contributie_amount = contributieMatch?.[1] ?? '—';
     
-        html_total_contributie += `<li>🏑 Familylid ${index + 1}: € ${contributie_amount.replace('.', ',')}</li>`;
+        html_total_contributie += `<li>🏑 Familielid ${index + 1}: € ${contributie_amount.replace('.', ',')}</li>`;
     });
     
     if (uniqueMembers.length > 1) {
