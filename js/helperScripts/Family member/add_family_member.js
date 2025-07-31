@@ -79,7 +79,9 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Geboortejaar
                     <div class="info-wrap">
-                        ⓘ
+                        <button class="info-button" type="button">
+                            ⓘ
+                        </button>
                         <div class="custom-tooltip-right">
                         De peildatum is 1 oktober van het desbetreffende seizoen, een voorbeeld is te vinden op de site.
                         </div>
@@ -118,7 +120,9 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Lidmaatschapsvorm veldhockey
                     <div class="info-wrap">
-                        ⓘ
+                        <button class="info-button" type="button">
+                            ⓘ
+                        </button>
                         <div class="custom-tooltip-left">
                             Iedereen onder de 18 is volwaardig veldhockeylid.
                         </div>
@@ -137,7 +141,9 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Selectieteam toeslag
                     <div class="info-wrap">
-                        ⓘ
+                        <button class="info-button" type="button">
+                            ⓘ
+                        </button>
                         <div class="custom-tooltip-left">
                             Alleen van toepassing op de O12-O18 teams en Jong-Senioren. Jong-Senioren spelend in D1/D2/H1/H2 betalen Senioren-contributie.
                         </div>
@@ -158,7 +164,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Speelt zaalhockey?
                     <div class="info-wrap">
-                        <button class="info-button" aria-label="Toon uitleg">
+                        <button class="info-button" type="button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -182,3 +188,29 @@ function get_family_member_html(family_member_number) {
 
     return html_family_member;
 }
+
+
+document.addEventListener('click', (e) => {
+    const button = e.target.closest('.info-button');
+  
+    if (button && button.tagName === 'BUTTON') {
+        const wrapper = button.closest('.info-wrap');
+  
+        // Close all other active wrappers
+        document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
+            if (activeWrapper !== wrapper) {
+            activeWrapper.classList.remove('active');
+            }
+        });
+
+        wrapper.classList.toggle('active');
+        e.stopPropagation();  // Prevents the global listener from closing it immediately
+    } else {
+        // Clicked outside: close all
+        document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
+            if (!wrapper.contains(e.target)) {
+                wrapper.classList.remove('active');
+            }
+        });
+    }
+});

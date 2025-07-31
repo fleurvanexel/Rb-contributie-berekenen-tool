@@ -130,11 +130,11 @@ button#add_member {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-  }
+}
   
-.custom-tooltip-right {
+/* .custom-tooltip-right {
     position: absolute;
-    bottom: 100%; /* positions above the icon */
+    bottom: 100%;
     left: 0;
     transform: translateY(-5px);
     background-color: #333;
@@ -147,9 +147,31 @@ button#add_member {
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 10;
+} */
+
+.custom-tooltip-right {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 70%;
+    left: 8px;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
 }
-  
-.custom-tooltip-left {
+
+.info-wrap.active .custom-tooltip-right {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* .custom-tooltip-left {
     position: absolute;
     bottom: 100%;
     right: 0;
@@ -164,10 +186,32 @@ button#add_member {
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 10;
+} */
+
+.custom-tooltip-left {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 70%;
+    right: 8px;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
 }
 
-.info-wrap:hover .custom-tooltip-left,
+/* .info-wrap:hover .custom-tooltip-left,
 .info-wrap:hover .custom-tooltip-right {
+    visibility: visible;
+    opacity: 1;
+} */
+
+.info-wrap.active .custom-tooltip-left {
     visibility: visible;
     opacity: 1;
 }
