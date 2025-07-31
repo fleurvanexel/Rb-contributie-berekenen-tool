@@ -190,21 +190,59 @@ function get_family_member_html(family_member_number) {
 }
 
 
+// document.addEventListener('click', (e) => {
+//     const button = e.target.closest('.info-button');
+  
+//     if (button && button.tagName === 'BUTTON') {
+//         const wrapper = button.closest('.info-wrap');
+  
+//         // Close all other active wrappers
+//         document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
+//             if (activeWrapper !== wrapper) {
+//             activeWrapper.classList.remove('active');
+//             }
+//         });
+
+//         wrapper.classList.toggle('active');
+//         e.stopPropagation();  // Prevents the global listener from closing it immediately
+//     } else {
+//         // Clicked outside: close all
+//         document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
+//             if (!wrapper.contains(e.target)) {
+//                 wrapper.classList.remove('active');
+//             }
+//         });
+//     }
+// });
+
+let lastOpenedWrapper = null;
+
 document.addEventListener('click', (e) => {
     const button = e.target.closest('.info-button');
-  
+
     if (button && button.tagName === 'BUTTON') {
         const wrapper = button.closest('.info-wrap');
-  
+
         // Close all other active wrappers
         document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
             if (activeWrapper !== wrapper) {
-            activeWrapper.classList.remove('active');
+                activeWrapper.classList.remove('active');
             }
         });
 
-        wrapper.classList.toggle('active');
-        e.stopPropagation();  // Prevents the global listener from closing it immediately
+        // Toggle current one
+        const isAlreadyOpen = wrapper.classList.contains('active');
+
+        if (isAlreadyOpen && lastOpenedWrapper === wrapper) {
+            // Second tap on same button: close it
+            wrapper.classList.remove('active');
+            lastOpenedWrapper = null;
+        } else {
+            wrapper.classList.add('active');
+            lastOpenedWrapper = wrapper;
+        }
+
+        e.stopPropagation();
     } else {
         // Clicked outside: close all
         document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
@@ -212,5 +250,6 @@ document.addEventListener('click', (e) => {
                 wrapper.classList.remove('active');
             }
         });
+        lastOpenedWrapper = null;
     }
 });
