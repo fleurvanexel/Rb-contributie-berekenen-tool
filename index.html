@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rekenhulp Contributie</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://kit.fontawesome.com/6fed0e7f5b.js" crossorigin="anonymous"></script> <!-- For icons -->
+        <script type="module" src="js/script.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/calculate_contributie_family_member.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/calculate_contributie_family_total.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/reset_contributie_family_member.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/reset_contributie_family_total.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/show_breakdown_contributie_family_member.js"></script>
+        <script type="module" src="js/helperScripts/Calculate contribution/show_breakdown_contributie_family_total.js"></script>
+        <script type="module" src="js/helperScripts/Contribution data/contribution_data.js"></script>
+        <script type="module" src="js/helperScripts/Family member/add_family_member.js"></script>
+        <script type="module" src="js/helperScripts/Family member/delete_family_member.js"></script>
+        <script type="module" src="js/helperScripts/Get current season/get_current_season.js"></script>
+        <script type="module" src="js/helperScripts/State/unique_members_state.js"></script>
+        <script type="module" src="js/helperScripts/Styling/styling.js"></script>
+        <script type="module" src="js/helperScripts/Verplichte combinaties/verplichte_combinaties.js"></script>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <div class="top-bar">
+                <h1>Contributieberekening individu/gezin</h1>
+                <!-- <div class="season-toggle">
+                    <button class="season-button active" data-season="huidig">Huidig seizoen</button>
+                    <button class="season-button" data-season="komend">Indicatie (!) komend seizoen*</button>
+                </div>  -->
+            </div>
+
+            <button id="add_member">Gezinslid toevoegen</button>
+
+            <div id="family-members-container">
+                <!-- Managed via JS -->
+            </div>  
+
+            <div class="family-contribution-total">
+                <div class="top-row">
+                    <div class="text-family-contribution-total">Totaal:</div>
+                    <div class="amount-family-contributie-total"></div>
+                </div>
+                <div class="family-contribution-total-per-month">
+                    <!-- Managed via JS -->
+                </div>
+            </div>
+            
+
+            <br>
+            <br>
+            <div class="footnotes">
+                <p>Let op: Deze tool biedt slechts een indicatie op basis van de ingevulde gegevens. 
+                    Er kunnen geen rechten aan deze berekeningen worden ontleend. 
+                    Voor officiële contributiebedragen en lidmaatschapsinformatie verwijzen wij naar de clubadministratie.
+                </p>
+            </div>
+        </div>
+
+        <div class="size-warning">Please open this tool on a larger screen</div>
+
+        <!-- <br>
+        <br>
+        <br>
+
+        <div class="background-numbers-website">
+            <div class="numbers-website">
+                <div class="box">
+                    <p>Aantal leden</p>
+                    <h2>1000</h2>
+                </div>
+                <div class="divider"></div>
+                    <div class="box">
+                    <p>Aantal teams</p>
+                    <h2>50</h2>
+                </div>
+                <div class="divider"></div>
+                    <div class="box">
+                    <p>Jeugd vs Senioren</p>
+                    <h2>500 / 500</h2>
+                </div>
+                    <div class="divider"></div>
+                    <div class="box">
+                    <p>Man vs Vrouw</p>
+                    <h2>500 / 500</h2>
+                </div>
+            </div>
+        </div> -->
+    </body>
+</html>
+
+
+
+
+<!-- TODO-Lijst -->
+ <!-- Check hardcoded variables.... -->
+ <!-- ... -->
+ <!-- ... -->
+ <!-- ... -->
+ <!-- ... -->

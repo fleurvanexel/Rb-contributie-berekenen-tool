@@ -1,0 +1,727 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    padding: 70px;
+}
+  
+.container {
+    background: white;
+    padding: 55px 70px;
+    border-radius: 22px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+    
+.top-bar h1 {
+    margin: 0;
+    font-size: 22px;
+}
+    
+/* .season-toggle {
+    display: flex;
+    gap: 10px;
+} */
+  
+/* .season-button {
+    padding: 6px 14px;
+    border: 1px solid #89CFF0;
+    background-color: white;
+    color: #0077b6;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, color 0.2s;
+} */
+  
+/* .season-button.active {
+    background-color: #89CFF0;
+    color: white;
+} */
+
+button#add_member {
+    margin-bottom: 3px;
+    padding: 7px 14px;
+    background-color: #89CFF0;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+  
+.family-member {
+    position: relative;
+    padding-bottom: 60px; /* Add space for the contributie box */
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 1fr 1fr;
+    gap: 20px;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.delete-member-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border: none;
+    background: red;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+.family-member-field-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.note-field-title {
+    margin-top: -5px;
+    font-weight: italics;
+    margin-bottom: 8px;
+}
+
+.info-wrap,
+.contributie-info-icon {
+    position: relative;
+    top: -5px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 11px;
+    color: #0077b6;
+
+    /* 👆 Tap-friendly enhancements */
+    padding: 8px 10px;         /* Adds space around the element */
+    margin: -8px -10px;        /* Cancels out visual shift from padding */
+    touch-action: manipulation; /* Improves responsiveness on mobile */
+}
+  
+.custom-tooltip-right {
+    position: absolute;
+    bottom: 100%; /* positions above the icon */
+    left: 0;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+  
+.custom-tooltip-left {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.info-wrap:hover .custom-tooltip-left,
+.info-wrap:hover .custom-tooltip-right {
+    visibility: visible;
+    opacity: 1;
+}
+
+.user-choose-option {
+    display: flex;
+    align-items: center; 
+}
+
+.fill-space-before-select {
+    width: 15px;
+}
+
+.select-field-month {
+    margin-right: 5px;
+}
+
+.column-1 .lid-status .select-field {
+    max-width: 190px;
+    /* height: 40px; */
+    height: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.lid-status select:disabled {
+    cursor: not-allowed;
+}
+
+.column-1 .show-age-category {
+    margin: 5px 0px 30px 15px;
+    font-size: 16px;
+    color: grey;
+}
+
+.veldhockey-type label {
+    display: inline-block;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.veldhockey-type label input {
+    margin-right: 8px; 
+    cursor: pointer;
+}
+
+.veldhockey-type label.dim-option {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.veldhockey-type label.dim-option input {
+    pointer-events: none;
+}
+
+.column-3 .user-choose-option .select-field {
+    max-width: 160px;
+}
+
+[class^="contributie-totaal-family-member-"] {
+    position: absolute;
+    bottom: 18px;
+    right: 50px;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.select-field:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.contributie-totaal-family-member .amount-contributie-totaal {
+    position: relative;
+}
+
+.contributie-breakdown {
+    position: absolute;
+    top: calc(100% + 6px); /* below the total */
+    right: 0;
+    z-index: 10;
+    min-width: 275px;
+    max-width: 300px;
+    width: fit-content;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.contributie-breakdown.fade-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+      
+/* ------------------------------ Slider ------------------------------ */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    margin-left: 15px;
+}
+
+.switch input {  /* Verberg standaard checkbox */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; 
+    left: 0;
+    right: 0; 
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 26px;
+}
+
+.slider:before {  /* Cirkel in de slider */
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {  /* Als checkbox is aangevinkt */
+    background-color: #89CFF0;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.switch input:disabled + .slider {
+    cursor: not-allowed;
+}
+
+.switch input:disabled:not(:checked) + .slider {
+    background-color: #e0e0e0;
+    opacity: 0.6;
+}
+
+.switch input:disabled + .slider:before {
+    background-color: #f5f5f5;
+    content: "🔒";
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* -------------------------------------------------------------- */
+
+
+.family-contribution-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.family-contribution-total .top-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.text-family-contribution-total {
+    text-align: right;
+    font-weight: bold;
+}
+
+.amount-family-contributie-total {
+    position: relative;
+    font-weight: bold;
+}
+
+.family-contribution-total-per-month {
+    margin-top: 2px;
+    color: grey;
+}
+
+.contributie-totaal-breakdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 10;
+    min-width: 230px;
+    max-width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.contributie-totaal-breakdown-list,
+.contributie-breakdown-list {
+    list-style-type: none;
+}
+
+.contributie-totaal-breakdown.fade-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.footnotes p {
+    font-size: 16px;
+}
+
+
+@media (max-width: 1200px) {
+    body {
+        background: #f4f4f4;
+        padding: 70px 50px;
+    }
+
+    .container {
+        max-width: 590px;
+        min-width: 300px;
+    }
+
+    .top-bar h1 {
+        margin: 0;
+        font-size: 21px;
+    }
+
+    .family-member {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        max-width: 560px;
+    }
+
+    .column-1 .lid-status .select-field {
+        max-width: 230px;
+        height: auto;
+    }
+  
+    [class^="contributie-totaal-family-member-"] {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: -10px;
+        align-self: flex-end;
+    }
+
+    .info-wrap {
+        position: relative;
+    }
+
+    .custom-tooltip-left,
+    .custom-tooltip-right {
+        right: 0;
+        left: auto;
+        max-width: 160px;
+        min-width: 120px;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.4;
+        display: block;
+        width: max-content;
+    }
+
+    .info-wrap:hover .custom-tooltip-left,
+    .info-wrap:hover .custom-tooltip-right {
+        visibility: visible;
+        opacity: 1;
+    }
+  
+    .column-1,
+    .column-2,
+    .column-3,
+    .column-4 {
+        width: 100%;
+    }
+
+    [class^="contributie-totaal-family-member-"] {
+        position: absolute;
+        bottom: 18px;
+        right: 20px;
+        font-weight: bold;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 60px;
+    }
+
+    .family-contribution-total {
+        max-width: 560px;
+    }
+}
+  
+
+
+@media (max-width: 666px) {
+    body {
+        padding: 15px;
+    }
+  
+    .container {
+        max-width: 100%;
+        min-width: auto;
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+  
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+  
+    .top-bar h1 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+  
+    button#add_member {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+  
+    .family-member {
+        position: relative;
+        padding-bottom: 60px;
+        display: grid;
+        grid-template-columns: 1.2fr;
+        gap: 20px;
+        padding: 15px;
+        border: 2px solid black;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+  
+    /* Make each family member field full width */
+    .column-1,
+    .column-2,
+    .column-3,
+    .column-4 {
+        width: 100%;
+    }
+  
+    /* Adjust select fields for easier tap */
+    .column-1 .lid-status .select-field {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .column-1 .show-age-category {
+        margin: 5px 0px 15px 15px;
+        font-size: 16px;
+    }
+
+    .veldhockey-type {
+        margin-top: 10px;
+    }
+
+    .column-3, .column-4 {
+        margin-top: -10px;
+    }
+
+    .column-4 {
+        margin-top: -4px;
+    }
+  
+    [class^="contributie-totaal-family-member-"] {
+        position: absolute;
+        bottom: 18px;
+        right: 20px;
+        font-weight: bold;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 60px;
+    }
+  
+    .family-contribution-total {
+        max-width: 100%;
+        padding: 12px;
+    }
+  
+    .custom-tooltip-left,
+    .custom-tooltip-right {
+        max-width: min(160px, 90vw);
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px); /* center above icon */
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+  
+    .info-wrap:hover .custom-tooltip-left,
+    .info-wrap:hover .custom-tooltip-right {
+        visibility: visible;
+        opacity: 1;
+    }
+  
+    /* Mke sliders and toggles bigger for touch */
+    .switch {
+        width: 60px;
+        height: 32px;
+    }
+  
+    .slider:before {
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 3px;
+    }
+
+    .footnotes p {
+        margin-top: -10px;
+        font-size: 14px;
+    }
+}
+  
+
+@media (max-width: 500px) {
+    .family-member {
+        padding-bottom: 55px; /* Make room at bottom for Contributie */
+    }
+
+    .column-1 .lid-status .select-field {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 310px) {
+    .container {
+        display: none;
+    }
+
+    body {
+        background: none;
+        padding: 0;
+    }
+
+    .size-warning {
+        display: block !important;
+        font-size: 16px;
+        padding: 60px 20px;
+        margin: 0 auto;
+        text-align: center;
+        max-width: 280px;
+    }
+}
+
+.size-warning {
+    display: none;
+}
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+
+
+.background-numbers-website {
+    padding: 100px;
+    background-color: white;
+}
+
+
+/* ----------------------------------------- */
+
+.numbers-website {
+    margin: 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.numbers-website .box {
+    flex: 1;
+    min-width: 200px;
+    margin: 0 10px;
+    border: 2px solid #0a2b65;
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.numbers-website .divider {
+    width: 4px;
+    height: 80px;
+    background-color: black;
+}
+
+.numbers-website .box p {
+    color: #0a2b65;
+    font-weight: bold;
+    font-size: 1.2sem;
+    margin-bottom: 10px;
+}
+
+.numbers-website .box h2 {
+    color: #fb7f22;
+    font-size: 2em;
+}
+
+@media (max-width: 1400px) {
+    .numbers-website .box {
+        min-width: 160px;
+        margin: 0 6px;
+        padding: 20px 5px;
+    }
+
+    .numbers-website .divider {
+        width: 3px;
+    }
+
+    .numbers-website .box p {
+        font-size: 1sem;
+    }
+
+    .numbers-website .box h2 {
+        font-size: 1.6em;
+    }
+} 
+
+@media (max-width: 1100px) {
+    .numbers-website {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .numbers-website .divider {
+        display: none;
+    }
+
+    .numbers-website .box {
+        margin: 5px 0;
+        width: 90%;
+        min-width: 150px;
+    }
+} 
+
+/* ----------------------------------------- */
