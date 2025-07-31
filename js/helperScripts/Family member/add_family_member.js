@@ -158,7 +158,9 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Speelt zaalhockey?
                     <div class="info-wrap">
-                        ⓘ
+                        <button class="info-button" aria-label="Toon uitleg">
+                            ⓘ
+                        </button>
                         <div class="custom-tooltip-left">
                             Zaalhockey wordt aangebogen vanaf O8 en is verplicht voor O8-O18 teams.
                         </div>
