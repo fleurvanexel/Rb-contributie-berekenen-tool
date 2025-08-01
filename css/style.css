@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: orange;
+    color: purple;
 }
     
 /* .season-toggle {
@@ -133,7 +133,45 @@ button#add_member {
     user-select: none;
 }
 
+.custom-tooltip-right,
+.custom-tooltip-left {
+    display: none;  /* Start hidden */
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;  /* Ensure it appears above other elements */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and movement */
+}
+
 .custom-tooltip-right {
+    bottom: 70%;
+    left: 8px;
+    transform: translateY(-5px);
+}
+
+/* Position for Left Tooltip */
+.custom-tooltip-left {
+    bottom: 70%;
+    right: 8px;
+    transform: translateY(-5px);
+}
+
+.info-wrap.active .custom-tooltip-right,
+.info-wrap.active .custom-tooltip-left {
+    display: block;  /* Make it visible */
+    opacity: 1;      /* Ensure full opacity */
+    transform: translateY(0); /* Optional: smooth in effect */
+}
+
+.info-wrap.active {
+    touch-action: none; /* Disable touch gestures while the tooltip is active */
+}
+
+/* .custom-tooltip-right {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -148,14 +186,14 @@ button#add_member {
     border-radius: 4px;
     white-space: nowrap;
     z-index: 10;
-}
+} */
 
-.info-wrap.active .custom-tooltip-right {
+/* .info-wrap.active .custom-tooltip-right {
     visibility: visible;
     opacity: 1;
-}
+} */
 
-.custom-tooltip-left {
+/* .custom-tooltip-left {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -170,12 +208,12 @@ button#add_member {
     border-radius: 4px;
     white-space: nowrap;
     z-index: 10;
-}
+} */
 
-.info-wrap.active .custom-tooltip-left {
+/* .info-wrap.active .custom-tooltip-left {
     visibility: visible;
     opacity: 1;
-}
+} */
 
 .user-choose-option {
     display: flex;
