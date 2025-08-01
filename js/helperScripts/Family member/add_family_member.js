@@ -270,7 +270,6 @@ function handleClick(e) {
 
 function toggleInfoPanel(button) {
     const wrapper = button.closest('.info-wrap');
-    const tooltip = wrapper.querySelector('.custom-tooltip-right, .custom-tooltip-left');
     updateDebugBox("In toggle");
 
     if (wrapper.classList.contains('active')) {
@@ -288,13 +287,18 @@ function toggleInfoPanel(button) {
     });
 
     // Toggle the active state of the clicked panel
-    wrapper.classList.toggle('active');  // Toggling visibility
-    tooltip.classList.toggle('inactive'); // Toggle the inactive state
+    if (wrapper.classList.contains('active')) {
+        updateDebugBox("Make INactive");
+        wrapper.classList.remove('active');
+    } else {
+        updateDebugBox("Make Active");
+        wrapper.classList.add('active');
+    }
 
     if (wrapper.classList.contains('active')) {
         updateDebugBox("This panel is now active");
     } else {
-        updateDebugBox("This panel is now inactive");
+        updateDebugBox("This panel is now INactive");
     }
     updateDebugBox("-----");
 }
