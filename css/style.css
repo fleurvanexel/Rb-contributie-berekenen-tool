@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: blue;
+    color: grey;
 }
     
 /* .season-toggle {
@@ -161,15 +161,22 @@ button#add_member {
     right: 8px;
 }
 
-.info-wrap.active .custom-tooltip-right,
+.custom-tooltip-right.active,
+.custom-tooltip-left.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* .info-wrap.active .custom-tooltip-right,
 .info-wrap.active .custom-tooltip-left {
     visibility: visible;
     opacity: 1;
-}
+} */
 
-.info-wrap.active {
+/* .info-wrap.active {
     outline: 2px solid limegreen;
-}
+} */
 
 /* .custom-tooltip-right {
     visibility: hidden;

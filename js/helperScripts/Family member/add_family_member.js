@@ -47,7 +47,7 @@ function create_new_family_member_element(family_member_number) {
     const html_family_member = get_family_member_html(family_member_number);
     const family_container = document.getElementById('family-members-container');
     family_container.insertAdjacentHTML('beforeend', html_family_member);
-    set_up_info_buttons_clickable();
+    // set_up_info_buttons_clickable();
     return document.querySelector(`#family-member-${family_member_number}`);
 }
 
@@ -80,7 +80,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Geboortejaar
                     <div class="info-wrap">
-                        <button class="info-button" type="button">
+                        <button onclick="toggleInfoPanel(this)" class="info-button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-right">
@@ -121,7 +121,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Lidmaatschapsvorm veldhockey
                     <div class="info-wrap">
-                        <button class="info-button" type="button">
+                        <button onclick="toggleInfoPanel(this)" class="info-button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -142,7 +142,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Selectieteam toeslag
                     <div class="info-wrap">
-                        <button class="info-button" type="button">
+                        <button onclick="toggleInfoPanel(this)" class="info-button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -165,7 +165,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Speelt zaalhockey?
                     <div class="info-wrap">
-                        <button class="info-button" type="button">
+                        <button onclick="toggleInfoPanel(this)" class="info-button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -253,60 +253,94 @@ function get_family_member_html(family_member_number) {
 //     e.stopPropagation(); // Prevent global listener from closing it immediately
 // }
 
-function set_up_info_buttons_clickable() {
-    document.querySelectorAll('.info-button').forEach(button => {
-        button.addEventListener('click', handleClick);
-    });
-}
-
-function handleClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    updateDebugBox("Click event triggered!");
-
-    // Handle the toggle directly on click
-    toggleInfoPanel(e.target);
-}
 
 function toggleInfoPanel(button) {
     const wrapper = button.closest('.info-wrap');
+    const tooltip = wrapper.querySelector('.custom-tooltip-right, .custom-tooltip-left');
     updateDebugBox("In toggle");
 
-    if (wrapper.classList.contains('active')) {
-        updateDebugBox("This panel is already active");
-    } else {
-        updateDebugBox("This panel is NOT active");
-    }
+    const isActive = tooltip.classList.contains('active');
 
-    // Close all other info panels
-    document.querySelectorAll('.info-wrap.active').forEach(other => {
-        if (other !== wrapper) {
+    // Close all other tooltips
+    document.querySelectorAll('.custom-tooltip-right.active, .custom-tooltip-left.active').forEach(other => {
+        if (other !== tooltip) {
             other.classList.remove('active');
-            updateDebugBox("Other one closed");
+            updateDebugBox("Other tooltip closed");
         }
     });
 
-    updateDebugBox("Wrapper classes before: " + wrapper.classList.toString());
+    updateDebugBox("Tooltip classes before: " + tooltip.classList.toString());
 
-    // Toggle the active state of the clicked panel
-    if (wrapper.classList.contains('active')) {
+    // Toggle this tooltip
+    if (isActive) {
         updateDebugBox("Make INactive");
-        wrapper.classList.remove('active');
+        tooltip.classList.remove('active');
     } else {
         updateDebugBox("Make Active");
-        wrapper.classList.add('active');
+        tooltip.classList.add('active');
     }
 
-    updateDebugBox("Wrapper classes after: " + wrapper.classList.toString());
-
-
-    if (wrapper.classList.contains('active')) {
-        updateDebugBox("This panel is now active");
-    } else {
-        updateDebugBox("This panel is now INactive");
-    }
+    updateDebugBox("Tooltip classes after: " + tooltip.classList.toString());
     updateDebugBox("-----");
 }
+window.toggleInfoPanel = toggleInfoPanel;
+
+
+
+// function set_up_info_buttons_clickable() {
+//     document.querySelectorAll('.info-button').forEach(button => {
+//         button.addEventListener('click', handleClick);
+//     });
+// }
+
+// function handleClick(e) {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     updateDebugBox("Click event triggered!");
+
+//     // Handle the toggle directly on click
+//     toggleInfoPanel(e.target);
+// }
+
+// function toggleInfoPanel(button) {
+//     const wrapper = button.closest('.info-wrap');
+//     updateDebugBox("In toggle");
+
+//     if (wrapper.classList.contains('active')) {
+//         updateDebugBox("This panel is already active");
+//     } else {
+//         updateDebugBox("This panel is NOT active");
+//     }
+
+//     // Close all other info panels
+//     document.querySelectorAll('.info-wrap.active').forEach(other => {
+//         if (other !== wrapper) {
+//             other.classList.remove('active');
+//             updateDebugBox("Other one closed");
+//         }
+//     });
+
+//     updateDebugBox("Wrapper classes before: " + wrapper.classList.toString());
+
+//     // Toggle the active state of the clicked panel
+//     if (wrapper.classList.contains('active')) {
+//         updateDebugBox("Make INactive");
+//         wrapper.classList.remove('active');
+//     } else {
+//         updateDebugBox("Make Active");
+//         wrapper.classList.add('active');
+//     }
+
+//     updateDebugBox("Wrapper classes after: " + wrapper.classList.toString());
+
+
+//     if (wrapper.classList.contains('active')) {
+//         updateDebugBox("This panel is now active");
+//     } else {
+//         updateDebugBox("This panel is now INactive");
+//     }
+//     updateDebugBox("-----");
+// }
 
 // Function to update the debug box content
 function updateDebugBox(message) {
@@ -323,12 +357,12 @@ function updateDebugBox(message) {
 
 
 
-document.addEventListener('click', (e) => {
-    updateDebugBox("Close all wrappers");
-    document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
-      if (!wrapper.contains(e.target)) {
-        wrapper.classList.remove('active');
-      }
-    });
-    updateDebugBox("-----");
-});
+// document.addEventListener('click', (e) => {
+//     updateDebugBox("Close all wrappers");
+//     document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
+//       if (!wrapper.contains(e.target)) {
+//         wrapper.classList.remove('active');
+//       }
+//     });
+//     updateDebugBox("-----");
+// });
