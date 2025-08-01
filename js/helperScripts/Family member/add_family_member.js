@@ -286,6 +286,8 @@ function toggleInfoPanel(button) {
         }
     });
 
+    updateDebugBox("Wrapper classes before: " + wrapper.classList.toString());
+
     // Toggle the active state of the clicked panel
     if (wrapper.classList.contains('active')) {
         updateDebugBox("Make INactive");
@@ -294,6 +296,9 @@ function toggleInfoPanel(button) {
         updateDebugBox("Make Active");
         wrapper.classList.add('active');
     }
+
+    updateDebugBox("Wrapper classes after: " + wrapper.classList.toString());
+
 
     if (wrapper.classList.contains('active')) {
         updateDebugBox("This panel is now active");
