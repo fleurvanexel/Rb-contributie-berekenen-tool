@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: red;
+    color: green;
 }
     
 /* .season-toggle {
@@ -131,6 +131,8 @@ button#add_member {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    position: relative;
+    z-index: 20;
 }
 
 .custom-tooltip-right,
@@ -165,11 +167,7 @@ button#add_member {
     display: block; 
     visibility: visible;
     opacity: 1;
-    pointer-events: all;
-}
-
-.info-wrap.active {
-    touch-action: none;
+    pointer-events: none;
 }
 
 /* .custom-tooltip-right {
