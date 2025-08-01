@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: grey;
+    color: black;
 }
     
 /* .season-toggle {
@@ -112,7 +112,7 @@ button#add_member {
     font-size: 11px;
     color: #0077b6;
 
-    /* Tap-friendly enhancements */
+    /* 👆 Tap-friendly enhancements */
     padding: 8px 10px;         /* Adds space around the element */
     margin: -8px -10px;        /* Cancels out visual shift from padding */
     touch-action: manipulation; /* Improves responsiveness on mobile */
@@ -123,24 +123,40 @@ button#add_member {
 .info-button {
     background: none;
     border: none;
-    padding: 2px 2px;
-    margin: 0;
+    padding: 8px 10px;
+    margin: -8px -10px;
     font: inherit;
     color: inherit;
     cursor: pointer;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    position: relative;
-    z-index: 20;
 }
-
-.custom-tooltip-right,
-.custom-tooltip-left {
-    visibility: hidden;
-    opacity: 0;
+  
+/* .custom-tooltip-right {
     position: absolute;
     bottom: 100%;
+    left: 0;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+} */
+
+.custom-tooltip-right {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 70%;
+    left: 8px;
     transform: translateY(-5px);
     background-color: #333;
     color: #fff;
@@ -149,78 +165,57 @@ button#add_member {
     border-radius: 4px;
     white-space: nowrap;
     z-index: 10;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.custom-tooltip-right {
-    left: 8px;
+.info-wrap.active .custom-tooltip-right {
+    visibility: visible;
+    opacity: 1;
 }
+
+/* .custom-tooltip-left {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+} */
 
 .custom-tooltip-left {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 70%;
     right: 8px;
+    transform: translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
 }
 
-.custom-tooltip-right.active,
-.custom-tooltip-left.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
+/* .info-wrap:hover .custom-tooltip-left,
+.info-wrap:hover .custom-tooltip-right {
+    visibility: visible;
+    opacity: 1;
+} */
 
-/* .info-wrap.active .custom-tooltip-right,
 .info-wrap.active .custom-tooltip-left {
     visibility: visible;
     opacity: 1;
-} */
-
-/* .info-wrap.active {
-    outline: 2px solid limegreen;
-} */
-
-/* .custom-tooltip-right {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    bottom: 70%;
-    left: 8px;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 10;
-} */
-
-/* .info-wrap.active .custom-tooltip-right {
-    visibility: visible;
-    opacity: 1;
-} */
-
-/* .custom-tooltip-left {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    bottom: 70%;
-    right: 8px;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 10;
-} */
-
-/* .info-wrap.active .custom-tooltip-left {
-    visibility: visible;
-    opacity: 1;
-} */
+}
 
 .user-choose-option {
     display: flex;
@@ -237,6 +232,7 @@ button#add_member {
 
 .column-1 .lid-status .select-field {
     max-width: 190px;
+    /* height: 40px; */
     height: auto;
     text-overflow: ellipsis;
     white-space: nowrap;

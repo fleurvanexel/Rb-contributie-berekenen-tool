@@ -47,7 +47,7 @@ function create_new_family_member_element(family_member_number) {
     const html_family_member = get_family_member_html(family_member_number);
     const family_container = document.getElementById('family-members-container');
     family_container.insertAdjacentHTML('beforeend', html_family_member);
-    // set_up_info_buttons_clickable();
+    set_up_info_buttons_clickable();
     return document.querySelector(`#family-member-${family_member_number}`);
 }
 
@@ -80,7 +80,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Geboortejaar
                     <div class="info-wrap">
-                        <button onclick="toggleInfoPanel(this)" class="info-button">
+                        <button class="info-button" type="button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-right">
@@ -121,7 +121,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Lidmaatschapsvorm veldhockey
                     <div class="info-wrap">
-                        <button onclick="toggleInfoPanel(this)" class="info-button">
+                        <button class="info-button" type="button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -142,7 +142,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Selectieteam toeslag
                     <div class="info-wrap">
-                        <button onclick="toggleInfoPanel(this)" class="info-button">
+                        <button class="info-button" type="button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -165,7 +165,7 @@ function get_family_member_html(family_member_number) {
                 <div class="family-member-field-title">
                     Speelt zaalhockey?
                     <div class="info-wrap">
-                        <button onclick="toggleInfoPanel(this)" class="info-button">
+                        <button class="info-button" type="button">
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
@@ -230,139 +230,30 @@ function get_family_member_html(family_member_number) {
 //     }
 // });
 
-// function set_up_info_buttons_clickable() {
-//     document.querySelectorAll('.info-button').forEach(button => {
-//         button.addEventListener('click', toggle_info_panel); // This listens for mouse clicks (working on laptops/desktops)
-//         button.addEventListener('touchstart', toggle_info_panel); // This listens for the touch event on mobile devices
-//     });
-// }
 
-// function toggle_info_panel(e) {
-//     const button = e.target;
-//     const wrapper = button.closest('.info-wrap');
+function set_up_info_buttons_clickable() {
+    document.querySelectorAll('.info-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const wrapper = button.closest('.info-wrap');
     
-//     // Close all other info panels
-//     document.querySelectorAll('.info-wrap.active').forEach(other => {
-//         if (other !== wrapper) {
-//             other.classList.remove('active');
-//         }
-//     });
+            // Close all others
+            document.querySelectorAll('.info-wrap.active').forEach(other => {
+            if (other !== wrapper) {
+                other.classList.remove('active');
+            }
+            });
 
-//     // Toggle the active state
-//     wrapper.classList.toggle('active');
-//     e.stopPropagation(); // Prevent global listener from closing it immediately
-// }
-
-
-function toggleInfoPanel(button) {
-    const wrapper = button.closest('.info-wrap');
-    const tooltip = wrapper.querySelector('.custom-tooltip-right, .custom-tooltip-left');
-    updateDebugBox("In toggle");
-
-    const isActive = tooltip.classList.contains('active');
-
-    // Close all other tooltips
-    document.querySelectorAll('.custom-tooltip-right.active, .custom-tooltip-left.active').forEach(other => {
-        if (other !== tooltip) {
-            other.classList.remove('active');
-            updateDebugBox("Other tooltip closed");
-        }
+            wrapper.classList.toggle('active');
+            e.stopPropagation(); // Prevent global listener from closing it immediately
+        });
     });
-
-    updateDebugBox("Tooltip classes before: " + tooltip.classList.toString());
-
-    // Toggle this tooltip
-    if (isActive) {
-        updateDebugBox("Make INactive");
-        tooltip.classList.remove('active');
-    } else {
-        updateDebugBox("Make Active");
-        tooltip.classList.add('active');
-    }
-
-    updateDebugBox("Tooltip classes after: " + tooltip.classList.toString());
-    updateDebugBox("-----");
-}
-window.toggleInfoPanel = toggleInfoPanel;
+}  
 
 
-
-// function set_up_info_buttons_clickable() {
-//     document.querySelectorAll('.info-button').forEach(button => {
-//         button.addEventListener('click', handleClick);
-//     });
-// }
-
-// function handleClick(e) {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     updateDebugBox("Click event triggered!");
-
-//     // Handle the toggle directly on click
-//     toggleInfoPanel(e.target);
-// }
-
-// function toggleInfoPanel(button) {
-//     const wrapper = button.closest('.info-wrap');
-//     updateDebugBox("In toggle");
-
-//     if (wrapper.classList.contains('active')) {
-//         updateDebugBox("This panel is already active");
-//     } else {
-//         updateDebugBox("This panel is NOT active");
-//     }
-
-//     // Close all other info panels
-//     document.querySelectorAll('.info-wrap.active').forEach(other => {
-//         if (other !== wrapper) {
-//             other.classList.remove('active');
-//             updateDebugBox("Other one closed");
-//         }
-//     });
-
-//     updateDebugBox("Wrapper classes before: " + wrapper.classList.toString());
-
-//     // Toggle the active state of the clicked panel
-//     if (wrapper.classList.contains('active')) {
-//         updateDebugBox("Make INactive");
-//         wrapper.classList.remove('active');
-//     } else {
-//         updateDebugBox("Make Active");
-//         wrapper.classList.add('active');
-//     }
-
-//     updateDebugBox("Wrapper classes after: " + wrapper.classList.toString());
-
-
-//     if (wrapper.classList.contains('active')) {
-//         updateDebugBox("This panel is now active");
-//     } else {
-//         updateDebugBox("This panel is now INactive");
-//     }
-//     updateDebugBox("-----");
-// }
-
-// Function to update the debug box content
-function updateDebugBox(message) {
-    const debugBox = document.getElementById('debug-box');
-    const logItem = document.createElement('p');
-    logItem.textContent = message;
-    debugBox.appendChild(logItem);
-    // Scroll to the bottom to always see the latest message
-    debugBox.scrollTop = debugBox.scrollHeight;
-}
-
-
-
-
-
-
-// document.addEventListener('click', (e) => {
-//     updateDebugBox("Close all wrappers");
-//     document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
-//       if (!wrapper.contains(e.target)) {
-//         wrapper.classList.remove('active');
-//       }
-//     });
-//     updateDebugBox("-----");
-// });
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('active');
+      }
+    });
+});
