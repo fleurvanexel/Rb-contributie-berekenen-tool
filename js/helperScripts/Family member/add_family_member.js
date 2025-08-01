@@ -230,24 +230,28 @@ function get_family_member_html(family_member_number) {
 //     }
 // });
 
-
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const wrapper = button.closest('.info-wrap');
-    
-            // Close all others
-            document.querySelectorAll('.info-wrap.active').forEach(other => {
-            if (other !== wrapper) {
-                other.classList.remove('active');
-            }
-            });
-
-            wrapper.classList.toggle('active');
-            e.stopPropagation(); // Prevent global listener from closing it immediately
-        });
+        button.addEventListener('click', toggle_info_panel); // This listens for mouse clicks (working on laptops/desktops)
+        button.addEventListener('touchstart', toggle_info_panel); // This listens for the touch event on mobile devices
     });
-}  
+}
+
+function toggle_info_panel(e) {
+    const button = e.target;
+    const wrapper = button.closest('.info-wrap');
+    
+    // Close all other info panels
+    document.querySelectorAll('.info-wrap.active').forEach(other => {
+        if (other !== wrapper) {
+            other.classList.remove('active');
+        }
+    });
+
+    // Toggle the active state
+    wrapper.classList.toggle('active');
+    e.stopPropagation(); // Prevent global listener from closing it immediately
+}
 
 
 document.addEventListener('click', (e) => {

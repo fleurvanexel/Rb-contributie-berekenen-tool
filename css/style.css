@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: blue;
+    color: green;
 }
     
 /* .season-toggle {
@@ -112,7 +112,7 @@ button#add_member {
     font-size: 11px;
     color: #0077b6;
 
-    /* 👆 Tap-friendly enhancements */
+    /* Tap-friendly enhancements */
     padding: 8px 10px;         /* Adds space around the element */
     margin: -8px -10px;        /* Cancels out visual shift from padding */
     touch-action: manipulation; /* Improves responsiveness on mobile */
@@ -132,23 +132,6 @@ button#add_member {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
 }
-  
-/* .custom-tooltip-right {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-} */
 
 .custom-tooltip-right {
     visibility: hidden;
@@ -172,23 +155,6 @@ button#add_member {
     opacity: 1;
 }
 
-/* .custom-tooltip-left {
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-} */
-
 .custom-tooltip-left {
     visibility: hidden;
     opacity: 0;
@@ -205,12 +171,6 @@ button#add_member {
     white-space: nowrap;
     z-index: 10;
 }
-
-/* .info-wrap:hover .custom-tooltip-left,
-.info-wrap:hover .custom-tooltip-right {
-    visibility: visible;
-    opacity: 1;
-} */
 
 .info-wrap.active .custom-tooltip-left {
     visibility: visible;
@@ -232,7 +192,6 @@ button#add_member {
 
 .column-1 .lid-status .select-field {
     max-width: 190px;
-    /* height: 40px; */
     height: auto;
     text-overflow: ellipsis;
     white-space: nowrap;
