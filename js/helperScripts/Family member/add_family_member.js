@@ -263,6 +263,13 @@ function set_up_info_buttons_clickable() {
 let touchStarted = false;
 
 function handleClick(e) {
+    // If touchstart was triggered, prevent click from firing
+    if (touchStarted) {
+        e.preventDefault(); // Prevent click event if it's triggered after touch
+        updateDebugBox("Click event prevented (because of prior touchstart)");
+        return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
     updateDebugBox("Click event triggered!");
@@ -272,20 +279,23 @@ function handleClick(e) {
 }
 
 function handleTouchStart(e) {
+    // If touchstart was already handled, don't trigger it again
+    if (touchStarted) {
+        e.preventDefault();
+        updateDebugBox("Touch event prevented (already handled)");
+        return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
-    updateDebugBox("Touch event triggered!");
 
-    if (touchStarted) {
-        updateDebugBox("Touch already handled, ignoring this one.");
-        return; // Ignore subsequent touch events if the first one already toggled
-    }
-    touchStarted = true; // Mark the first touch event
+    touchStarted = true; // Mark that touch has been started
+    updateDebugBox("Touch event triggered!");
 
     // Handle the toggle directly on touch
     toggleInfoPanel(e.target);
 
-    // After touch end, reset the touchStarted flag
+    // After touchend, reset touchStarted flag to allow click handling
     document.addEventListener('touchend', () => {
         touchStarted = false;
         updateDebugBox("Touch reset.");
@@ -306,6 +316,7 @@ function toggleInfoPanel(button) {
     wrapper.classList.toggle('active');
 }
 
+// Function to update the debug box content
 function updateDebugBox(message) {
     const debugBox = document.getElementById('debug-box');
     const logItem = document.createElement('p');
@@ -314,6 +325,7 @@ function updateDebugBox(message) {
     // Optionally, scroll to the bottom to always see the latest message
     debugBox.scrollTop = debugBox.scrollHeight;
 }
+
 
 
 
