@@ -191,46 +191,6 @@ function get_family_member_html(family_member_number) {
 }
 
 
-// let lastOpenedWrapper = null;
-
-// document.addEventListener('click', (e) => {
-//     const button = e.target.closest('.info-button');
-
-//     if (button && button.tagName === 'BUTTON') {
-//         const wrapper = button.closest('.info-wrap');
-
-//         // Close all other active wrappers
-//         document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
-//             if (activeWrapper !== wrapper) {
-//                 activeWrapper.classList.remove('active');
-//             }
-//         });
-
-//         // Toggle current one
-//         const isAlreadyOpen = wrapper.classList.contains('active');
-
-//         if (isAlreadyOpen && lastOpenedWrapper === wrapper) {
-//             // Second tap on same button: close it
-//             wrapper.classList.remove('active');
-//             lastOpenedWrapper = null;
-//         } else {
-//             wrapper.classList.add('active');
-//             lastOpenedWrapper = wrapper;
-//         }
-
-//         e.stopPropagation();
-//     } else {
-//         // Clicked outside: close all
-//         document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
-//             if (!wrapper.contains(e.target)) {
-//                 wrapper.classList.remove('active');
-//             }
-//         });
-//         lastOpenedWrapper = null;
-//     }
-// });
-
-
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -252,8 +212,8 @@ function set_up_info_buttons_clickable() {
 
 document.addEventListener('click', (e) => {
     document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
-      if (!wrapper.contains(e.target)) {
-        wrapper.classList.remove('active');
-      }
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('active');
+        }
     });
 });

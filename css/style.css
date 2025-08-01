@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: black;
+    color: red;
 }
     
 /* .season-toggle {
@@ -113,8 +113,8 @@ button#add_member {
     color: #0077b6;
 
     /* 👆 Tap-friendly enhancements */
-    padding: 8px 10px;         /* Adds space around the element */
-    margin: -8px -10px;        /* Cancels out visual shift from padding */
+    padding: 3px 3px;         /* Adds space around the element */
+    margin: -3px -3px;        /* Cancels out visual shift from padding */
     touch-action: manipulation; /* Improves responsiveness on mobile */
     -webkit-tap-highlight-color: transparent;
     user-select: none;
@@ -123,8 +123,8 @@ button#add_member {
 .info-button {
     background: none;
     border: none;
-    padding: 8px 10px;
-    margin: -8px -10px;
+    padding: 3px 3px;
+    margin: -3px -3px;
     font: inherit;
     color: inherit;
     cursor: pointer;
@@ -133,23 +133,6 @@ button#add_member {
     user-select: none;
 }
   
-/* .custom-tooltip-right {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-} */
-
 .custom-tooltip-right {
     visibility: hidden;
     opacity: 0;
@@ -164,30 +147,8 @@ button#add_member {
     font-size: 12px;
     border-radius: 4px;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 12;
 }
-
-.info-wrap.active .custom-tooltip-right {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* .custom-tooltip-left {
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    transform: translateY(-5px);
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-} */
 
 .custom-tooltip-left {
     visibility: hidden;
@@ -212,6 +173,7 @@ button#add_member {
     opacity: 1;
 } */
 
+.info-wrap.active .custom-tooltip-right,
 .info-wrap.active .custom-tooltip-left {
     visibility: visible;
     opacity: 1;
