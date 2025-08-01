@@ -230,17 +230,45 @@ function get_family_member_html(family_member_number) {
 //     }
 // });
 
+// function set_up_info_buttons_clickable() {
+//     document.querySelectorAll('.info-button').forEach(button => {
+//         button.addEventListener('click', toggle_info_panel); // This listens for mouse clicks (working on laptops/desktops)
+//         button.addEventListener('touchstart', toggle_info_panel); // This listens for the touch event on mobile devices
+//     });
+// }
+
+// function toggle_info_panel(e) {
+//     const button = e.target;
+//     const wrapper = button.closest('.info-wrap');
+    
+//     // Close all other info panels
+//     document.querySelectorAll('.info-wrap.active').forEach(other => {
+//         if (other !== wrapper) {
+//             other.classList.remove('active');
+//         }
+//     });
+
+//     // Toggle the active state
+//     wrapper.classList.toggle('active');
+//     e.stopPropagation(); // Prevent global listener from closing it immediately
+// }
+
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
-        button.addEventListener('click', toggle_info_panel); // This listens for mouse clicks (working on laptops/desktops)
-        button.addEventListener('touchstart', toggle_info_panel); // This listens for the touch event on mobile devices
+        // Add touchstart and click listeners
+        button.addEventListener('click', toggleInfoPanel);
+        button.addEventListener('touchstart', toggleInfoPanel, { passive: true });
     });
 }
 
-function toggle_info_panel(e) {
+function toggleInfoPanel(e) {
+    // Prevent default action and stop propagation to avoid interference with other listeners
+    e.preventDefault();
+    e.stopPropagation();
+
     const button = e.target;
     const wrapper = button.closest('.info-wrap');
-    
+
     // Close all other info panels
     document.querySelectorAll('.info-wrap.active').forEach(other => {
         if (other !== wrapper) {
@@ -248,10 +276,10 @@ function toggle_info_panel(e) {
         }
     });
 
-    // Toggle the active state
+    // Toggle the active state (open/close the panel)
     wrapper.classList.toggle('active');
-    e.stopPropagation(); // Prevent global listener from closing it immediately
 }
+
 
 
 document.addEventListener('click', (e) => {
