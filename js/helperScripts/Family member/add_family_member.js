@@ -233,7 +233,7 @@ function get_family_member_html(family_member_number) {
 
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
-        button.addEventListener('pointerdown', (e) => {
+        button.addEventListener('click', (e) => {
             const wrapper = button.closest('.info-wrap');
     
             // Close all others
