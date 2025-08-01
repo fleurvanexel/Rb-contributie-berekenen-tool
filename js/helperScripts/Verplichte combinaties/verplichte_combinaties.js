@@ -17,10 +17,10 @@ export function apply_verplichte_combinaties(family_member, leeftijd) {
     const is_te_jong_om_lid_te_zijn = leeftijd < min_leeftijd_hockeyen;
     const is_jong_senior = leeftijd >= min_age_jong_senioren && leeftijd <= max_age_jong_senioren;
     const is_senior = leeftijd > max_age_jong_senioren
-    const is_verplicht_volwaardig_veldhockeylid = min_leeftijd_verplicht_volwaardig_veldhockey_lid && leeftijd <= max_leeftijd_verplicht_volwaardig_veldhockey_lid; 
+    const is_verplicht_volwaardig_veldhockeylid = leeftijd >= min_leeftijd_verplicht_volwaardig_veldhockey_lid && leeftijd <= max_leeftijd_verplicht_volwaardig_veldhockey_lid; 
     const is_eventueel_selectie_toeslag_verschuldigd = leeftijd >= min_leeftijd_selectieteam && leeftijd <= max_leeftijd_selectieteam;
     const is_te_jong_om_zaalhockey_lid_te_zijn = leeftijd < min_leeftijd_zaalhockey;
-    const is_verplicht_zaalhockey_lid = min_leeftijd_zaalhockey_verplicht && leeftijd <= max_leeftijd_zaalhockey_verplicht; 
+    const is_verplicht_zaalhockey_lid = leeftijd >= min_leeftijd_zaalhockey_verplicht && leeftijd <= max_leeftijd_zaalhockey_verplicht; 
 
     if (is_te_jong_om_lid_te_zijn) {
         // console.log("Verplichte combinatie: te jong");

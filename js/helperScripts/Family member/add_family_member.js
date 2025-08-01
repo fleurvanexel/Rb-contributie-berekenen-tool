@@ -47,6 +47,7 @@ function create_new_family_member_element(family_member_number) {
     const html_family_member = get_family_member_html(family_member_number);
     const family_container = document.getElementById('family-members-container');
     family_container.insertAdjacentHTML('beforeend', html_family_member);
+    set_up_info_buttons_clickable();
     return document.querySelector(`#family-member-${family_member_number}`);
 }
 
@@ -190,21 +191,34 @@ function get_family_member_html(family_member_number) {
 }
 
 
+// let lastOpenedWrapper = null;
+
 // document.addEventListener('click', (e) => {
 //     const button = e.target.closest('.info-button');
-  
+
 //     if (button && button.tagName === 'BUTTON') {
 //         const wrapper = button.closest('.info-wrap');
-  
+
 //         // Close all other active wrappers
 //         document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
 //             if (activeWrapper !== wrapper) {
-//             activeWrapper.classList.remove('active');
+//                 activeWrapper.classList.remove('active');
 //             }
 //         });
 
-//         wrapper.classList.toggle('active');
-//         e.stopPropagation();  // Prevents the global listener from closing it immediately
+//         // Toggle current one
+//         const isAlreadyOpen = wrapper.classList.contains('active');
+
+//         if (isAlreadyOpen && lastOpenedWrapper === wrapper) {
+//             // Second tap on same button: close it
+//             wrapper.classList.remove('active');
+//             lastOpenedWrapper = null;
+//         } else {
+//             wrapper.classList.add('active');
+//             lastOpenedWrapper = wrapper;
+//         }
+
+//         e.stopPropagation();
 //     } else {
 //         // Clicked outside: close all
 //         document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
@@ -212,44 +226,34 @@ function get_family_member_html(family_member_number) {
 //                 wrapper.classList.remove('active');
 //             }
 //         });
+//         lastOpenedWrapper = null;
 //     }
 // });
 
-let lastOpenedWrapper = null;
+
+function set_up_info_buttons_clickable() {
+    document.querySelectorAll('.info-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const wrapper = button.closest('.info-wrap');
+    
+            // Close all others
+            document.querySelectorAll('.info-wrap.active').forEach(other => {
+            if (other !== wrapper) {
+                other.classList.remove('active');
+            }
+            });
+
+            wrapper.classList.toggle('active');
+            e.stopPropagation(); // Prevent global listener from closing it immediately
+        });
+    });
+}  
+
 
 document.addEventListener('click', (e) => {
-    const button = e.target.closest('.info-button');
-
-    if (button && button.tagName === 'BUTTON') {
-        const wrapper = button.closest('.info-wrap');
-
-        // Close all other active wrappers
-        document.querySelectorAll('.info-wrap.active').forEach(activeWrapper => {
-            if (activeWrapper !== wrapper) {
-                activeWrapper.classList.remove('active');
-            }
-        });
-
-        // Toggle current one
-        const isAlreadyOpen = wrapper.classList.contains('active');
-
-        if (isAlreadyOpen && lastOpenedWrapper === wrapper) {
-            // Second tap on same button: close it
-            wrapper.classList.remove('active');
-            lastOpenedWrapper = null;
-        } else {
-            wrapper.classList.add('active');
-            lastOpenedWrapper = wrapper;
-        }
-
-        e.stopPropagation();
-    } else {
-        // Clicked outside: close all
-        document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
-            if (!wrapper.contains(e.target)) {
-                wrapper.classList.remove('active');
-            }
-        });
-        lastOpenedWrapper = null;
-    }
+    document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('active');
+      }
+    });
 });
