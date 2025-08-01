@@ -83,7 +83,14 @@ export function apply_verplichte_combinaties(family_member, leeftijd) {
         free_restrictions_lidstatus(family_member);
         free_restrictions_veldhockey(family_member);
         lock_trimmer_option_veldhockey(family_member);
-        free_restrictions_selectieteam_toeslag(family_member);
+        const is_volwaardig_jong_senior = family_member.querySelector(`input[name^="veldhockey-type-family-member-"]:checked`)?.value == "Volwaardig";
+        const is_trainingslid_jong_senior = family_member.querySelector(`input[name^="veldhockey-type-family-member-"]:checked`)?.value == "Trainingslid";
+        if (is_volwaardig_jong_senior) {
+            free_restrictions_selectieteam_toeslag(family_member);
+        }
+        if (is_trainingslid_jong_senior) {
+            lock_selectieteam_toeslag(family_member);
+        }
         rename_selectieteam_toeslag_jong_senioren(family_member);
         free_restrictions_zaalhockey(family_member);
     }
@@ -106,6 +113,7 @@ export function apply_verplicht_zaalhockey_als_geen_veldhockey(family_member_num
 
     if (lidvorm == "Geen") {  // Geen veldhockey -> Zaalhockey verplicht
         verplicht_zaalhockey(family_member);
+        lock_selectieteam_toeslag(family_member);
     }
     else {
         free_restrictions_zaalhockey_but_keep_value(family_member);
