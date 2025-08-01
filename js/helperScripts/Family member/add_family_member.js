@@ -255,34 +255,71 @@ function get_family_member_html(family_member_number) {
 
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
-        // Add touchstart and click listeners
-        button.addEventListener('click', toggleInfoPanel);
-        button.addEventListener('touchstart', toggleInfoPanel, { passive: true });
+        button.addEventListener('click', handleClick);
+        button.addEventListener('touchstart', handleTouchStart, { passive: true });
     });
 }
 
-function toggleInfoPanel(e) {
-    // Prevent default action and stop propagation to avoid interference with other listeners
+let touchStarted = false;
+
+function handleClick(e) {
     e.preventDefault();
     e.stopPropagation();
+    updateDebugBox("Click event triggered!");
 
-    const button = e.target;
+    // Handle the toggle directly on click
+    toggleInfoPanel(e.target);
+}
+
+function handleTouchStart(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    updateDebugBox("Touch event triggered!");
+
+    if (touchStarted) {
+        updateDebugBox("Touch already handled, ignoring this one.");
+        return; // Ignore subsequent touch events if the first one already toggled
+    }
+    touchStarted = true; // Mark the first touch event
+
+    // Handle the toggle directly on touch
+    toggleInfoPanel(e.target);
+
+    // After touch end, reset the touchStarted flag
+    document.addEventListener('touchend', () => {
+        touchStarted = false;
+        updateDebugBox("Touch reset.");
+    }, { once: true });
+}
+
+function toggleInfoPanel(button) {
     const wrapper = button.closest('.info-wrap');
-
-    // Close all other info panels
+    
+    // Close all other panels
     document.querySelectorAll('.info-wrap.active').forEach(other => {
         if (other !== wrapper) {
             other.classList.remove('active');
         }
     });
 
-    // Toggle the active state (open/close the panel)
+    // Toggle the current panel's active state
     wrapper.classList.toggle('active');
+}
+
+function updateDebugBox(message) {
+    const debugBox = document.getElementById('debug-box');
+    const logItem = document.createElement('p');
+    logItem.textContent = message;
+    debugBox.appendChild(logItem);
+    // Optionally, scroll to the bottom to always see the latest message
+    debugBox.scrollTop = debugBox.scrollHeight;
 }
 
 
 
+
 document.addEventListener('click', (e) => {
+    updateDebugBox("Close all wrappers");
     document.querySelectorAll('.info-wrap.active').forEach(wrapper => {
       if (!wrapper.contains(e.target)) {
         wrapper.classList.remove('active');
