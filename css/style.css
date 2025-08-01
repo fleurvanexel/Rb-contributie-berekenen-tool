@@ -28,7 +28,7 @@ body {
 .top-bar h1 {
     margin: 0;
     font-size: 22px;
-    color: black;
+    color: blue;
 }
     
 /* .season-toggle {
@@ -618,6 +618,22 @@ input:checked + .slider:before {
         width: 26px;
         left: 4px;
         bottom: 3px;
+    }
+
+    .switch input:disabled + .slider:before {
+        background-color: #f5f5f5;
+        content: "🔒";
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 26px;
+        width: 26px;
+        border-radius: 50%;
+        position: absolute;
+        left: 4px;
+        bottom: 3px;
+        line-height: 1;
     }
 
     .footnotes p {

@@ -84,7 +84,7 @@ function get_family_member_html(family_member_number) {
                             ⓘ
                         </button>
                         <div class="custom-tooltip-right">
-                        De peildatum is 1 oktober van het desbetreffende seizoen, een voorbeeld is te vinden op de site.
+                            De peildatum is 1 oktober van het desbetreffende seizoen, een voorbeeld is te vinden op de site.
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ function get_family_member_html(family_member_number) {
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
-                            Iedereen onder de 18 is volwaardig veldhockeylid.
+                            Iedereen onder de 18 (peildatum aan het begin van het seizoen) is volwaardig veldhockeylid.
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@ function get_family_member_html(family_member_number) {
                             ⓘ
                         </button>
                         <div class="custom-tooltip-left">
-                            Zaalhockey wordt aangebogen vanaf O8 en is verplicht voor O8-O18 teams.
+                            Zaalhockey is beschikbaar vanaf O8 en verplicht voor O8-O18. Senioren betalen individueel trainingsgeld aan de club en apart competitiegeld per team aan de bond.
                         </div>
                     </div>
                 </div>
