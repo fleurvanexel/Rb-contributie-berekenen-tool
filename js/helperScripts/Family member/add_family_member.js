@@ -256,20 +256,10 @@ function get_family_member_html(family_member_number) {
 function set_up_info_buttons_clickable() {
     document.querySelectorAll('.info-button').forEach(button => {
         button.addEventListener('click', handleClick);
-        button.addEventListener('touchstart', handleTouchStart, { passive: true });
     });
 }
 
-let touchStarted = false;
-
 function handleClick(e) {
-    // If touchstart was triggered, prevent click from firing
-    if (touchStarted) {
-        e.preventDefault(); // Prevent click event if it's triggered after touch
-        updateDebugBox("Click event prevented (because of prior touchstart)");
-        return;
-    }
-
     e.preventDefault();
     e.stopPropagation();
     updateDebugBox("Click event triggered!");
@@ -278,42 +268,33 @@ function handleClick(e) {
     toggleInfoPanel(e.target);
 }
 
-function handleTouchStart(e) {
-    // If touchstart was already handled, don't trigger it again
-    if (touchStarted) {
-        e.preventDefault();
-        updateDebugBox("Touch event prevented (already handled)");
-        return;
-    }
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    touchStarted = true; // Mark that touch has been started
-    updateDebugBox("Touch event triggered!");
-
-    // Handle the toggle directly on touch
-    toggleInfoPanel(e.target);
-
-    // After touchend, reset touchStarted flag to allow click handling
-    document.addEventListener('touchend', () => {
-        touchStarted = false;
-        updateDebugBox("Touch reset.");
-    }, { once: true });
-}
-
 function toggleInfoPanel(button) {
     const wrapper = button.closest('.info-wrap');
-    
-    // Close all other panels
+    updateDebugBox("In toggle");
+
+    if (wrapper.classList.contains('active')) {
+        updateDebugBox("This panel is already active");
+    } else {
+        updateDebugBox("This panel is NOT active");
+    }
+
+    // Close all other info panels
     document.querySelectorAll('.info-wrap.active').forEach(other => {
         if (other !== wrapper) {
             other.classList.remove('active');
+            updateDebugBox("Other one closed");
         }
     });
 
-    // Toggle the current panel's active state
+    // Toggle the active state of the clicked panel
     wrapper.classList.toggle('active');
+
+    if (wrapper.classList.contains('active')) {
+        updateDebugBox("This panel is now active");
+    } else {
+        updateDebugBox("This panel is now inactive");
+    }
+    updateDebugBox("-----");
 }
 
 // Function to update the debug box content
@@ -322,9 +303,10 @@ function updateDebugBox(message) {
     const logItem = document.createElement('p');
     logItem.textContent = message;
     debugBox.appendChild(logItem);
-    // Optionally, scroll to the bottom to always see the latest message
+    // Scroll to the bottom to always see the latest message
     debugBox.scrollTop = debugBox.scrollHeight;
 }
+
 
 
 
@@ -337,4 +319,5 @@ document.addEventListener('click', (e) => {
         wrapper.classList.remove('active');
       }
     });
+    updateDebugBox("-----");
 });
